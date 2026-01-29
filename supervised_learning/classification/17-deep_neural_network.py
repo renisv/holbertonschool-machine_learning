@@ -2,14 +2,14 @@
 """
 17-deep_neural_network.py
 
-Defines a DeepNeuralNetwork class (privatized) for binary classification.
+Defines a DeepNeuralNetwork class for binary classification.
 """
 
 import numpy as np
 
 
 class DeepNeuralNetwork:
-    """Deep neural network performing binary classification with private attrs."""
+    """Deep neural network with private attributes."""
 
     def __init__(self, nx, layers):
         """
@@ -51,15 +51,15 @@ class DeepNeuralNetwork:
 
     @property
     def L(self):
-        """Get the number of layers in the neural network."""
+        """Number of layers in the neural network."""
         return self.__L
 
     @property
     def cache(self):
-        """Get the cache dictionary of intermediary values."""
+        """Dictionary holding intermediary values."""
         return self.__cache
 
     @property
     def weights(self):
-        """Get the weights and biases dictionary."""
+        """Dictionary holding weights and biases."""
         return self.__weights
