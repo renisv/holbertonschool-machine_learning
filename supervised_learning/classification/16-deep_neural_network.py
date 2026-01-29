@@ -1,9 +1,30 @@
 #!/usr/bin/env python3
+"""
+16-deep_neural_network.py
+
+Defines a DeepNeuralNetwork class that performs binary classification.
+"""
+
 import numpy as np
 
 
 class DeepNeuralNetwork:
+    """Deep neural network performing binary classification."""
+
     def __init__(self, nx, layers):
+        """
+        Initialize a deep neural network.
+
+        Args:
+            nx (int): Number of input features.
+            layers (list): List of positive integers where each element is the
+                number of nodes in that layer.
+
+        Raises:
+            TypeError: If nx is not an integer.
+            ValueError: If nx is not a positive integer.
+            TypeError: If layers is not a list of positive integers.
+        """
         if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
         if nx < 1:
