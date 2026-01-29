@@ -73,8 +73,7 @@ class DeepNeuralNetwork:
             X (np.ndarray): Input data of shape (nx, m).
 
         Returns:
-            tuple: (A_L, cache) where A_L is the activated output of the last
-            layer and cache is the dictionary of all activations.
+            tuple: Output of the network and the cache.
         """
         self.__cache["A0"] = X
 
@@ -83,9 +82,15 @@ class DeepNeuralNetwork:
             b_key = "b{}".format(layer)
             a_prev = self.__cache["A{}".format(layer - 1)]
 
-            z = np.matmul(self.__weights[w_key], a_prev) + self.__weights[b_key]
+            z = (
+                np.matmul(self.__weights[w_key], a_prev)
+                + self.__weights[b_key]
+            )
             a = 1 / (1 + np.exp(-z))
 
             self.__cache["A{}".format(layer)] = a
 
-        return self.__cache["A{}".format(self.__L)], self.__cache
+        return (
+            self.__cache["A{}".format(self.__L)],
+            self.__cache
+        )
