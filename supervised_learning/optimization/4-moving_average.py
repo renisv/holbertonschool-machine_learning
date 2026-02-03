@@ -22,4 +22,3 @@ def moving_average(data, beta):
         avgs.append(v_corrected)
 
     return avgs
-
