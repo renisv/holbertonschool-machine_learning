@@ -1,6 +1,8 @@
 # If You Can’t Explain It Simply, You Don’t Understand It Well Enough  
 ## Optimization Techniques in Machine Learning
 
+![Optimization Techniques](https://miro.medium.com/v2/resize:fit:1400/1*QJxk2zY8JrIoYNewc0hXtA.png)
+
 Training a machine learning model is not only about choosing the right architecture; it is mostly about **how efficiently and stably the model learns**. Optimization techniques exist to make learning faster, smoother, and more reliable.
 
 This document explains the **mechanics, pros, and cons** of the most common optimization techniques used in modern machine learning and deep learning.
