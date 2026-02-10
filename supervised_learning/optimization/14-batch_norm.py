@@ -12,26 +12,23 @@ def create_batch_norm_layer(prev, n, activation):
     Creates a batch normalization layer for a neural network
 
     prev: activated output of the previous layer
-    n: number of nodes in the layer to create
-    activation: activation function to use on the output
+    n: number of nodes in the layer to be created
+    activation: activation function to use
     Returns: tensor of the activated output for the layer
     """
-    initializer = tf.keras.initializers.VarianceScaling(mode='fan_avg')
+    init = tf.keras.initializers.VarianceScaling(mode='fan_avg')
 
-    dense = tf.keras.layers.Dense(
+    x = tf.keras.layers.Dense(
         units=n,
-        kernel_initializer=initializer,
-        use_bias=False
+        kernel_initializer=init
     )(prev)
 
     bn = tf.keras.layers.BatchNormalization(
-        axis=1,
-        momentum=0.9,
         epsilon=1e-7,
-        center=True,
-        scale=True,
-        beta_initializer='zeros',
-        gamma_initializer='ones'
-    )(dense)
+        gamma_initializer='ones',
+        beta_initializer='zeros'
+    )
 
-    return activation(bn)
+    x = bn(x, training=True)
+
+    return activation(x)
