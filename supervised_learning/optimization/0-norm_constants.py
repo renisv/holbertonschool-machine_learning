@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+0-norm_constants.py
+Calculates normalization (standardization) constants for a dataset
+"""
+
 import numpy as np
 
 
