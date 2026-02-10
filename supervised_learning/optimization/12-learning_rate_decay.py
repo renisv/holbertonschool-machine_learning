@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 12-learning_rate_decay.py
-Creates a TensorFlow inverse time decay learning rate schedule (stepwise)
+Creates a TensorFlow inverse time decay learning rate schedule
 """
 
 import tensorflow as tf
@@ -9,7 +9,8 @@ import tensorflow as tf
 
 def learning_rate_decay(alpha, decay_rate, decay_step):
     """
-    Creates a learning rate decay operation in TensorFlow using inverse time decay
+    Creates a learning rate decay operation in TensorFlow
+    using inverse time decay (stepwise)
 
     alpha: original learning rate
     decay_rate: decay rate
