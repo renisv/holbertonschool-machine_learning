@@ -14,6 +14,8 @@ def l2_reg_cost(cost, model):
         model: Keras model that includes L2 regularization
 
     Returns:
-        Tensor containing the total cost accounting for L2 regularization
+        Tensor containing the total cost for each layer accounting
+        for L2 regularization
     """
-    return cost + tf.reduce_sum(model.losses)
+    reg_losses = model.losses
+    return tf.stack([cost + loss for loss in reg_losses])
