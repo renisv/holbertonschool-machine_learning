@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-
 import numpy as np
+
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     """
@@ -14,25 +14,23 @@ def dropout_forward_prop(X, weights, L, keep_prob):
     """
     cache = {}
     A = X
-    cache["A0"] = A  # <-- must be input data, not zeros
-    
-    for l in range(1, L + 1):
-        W = weights['W{}'.format(l)]
-        b = weights['b{}'.format(l)]
+    cache["A0"] = A  # input data
+
+    for layer in range(1, L + 1):
+        W = weights['W{}'.format(layer)]
+        b = weights['b{}'.format(layer)]
         Z = W @ A + b
 
-        if l != L:
+        if layer != L:
             A = np.tanh(Z)
-            # create dropout mask
             D = np.random.rand(*A.shape) < keep_prob
             A = A * D
             A = A / keep_prob
-            cache["D{}".format(l)] = D.astype(int)
+            cache["D{}".format(layer)] = D.astype(int)
         else:
-            # softmax for last layer
             expZ = np.exp(Z - np.max(Z, axis=0, keepdims=True))
             A = expZ / np.sum(expZ, axis=0, keepdims=True)
 
-        cache["A{}".format(l)] = A
+        cache["A{}".format(layer)] = A
 
     return cache
