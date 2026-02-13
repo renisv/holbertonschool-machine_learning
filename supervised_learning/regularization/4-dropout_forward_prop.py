@@ -1,43 +1,33 @@
-#!/usr/bin/env python3
-"""Module that contains dropout_forward_prop"""
-
-
 import numpy as np
-
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     """
-    Conducts forward propagation using Dropout
+    Performs forward propagation with Dropout.
 
-    Args:
-        X: input data (nx, m)
-        weights: dictionary of weights and biases
-        L: number of layers
-        keep_prob: probability of keeping a node
-
-    Returns:
-        Dictionary of activations and dropout masks
+    X: input data, shape (nx, m)
+    weights: dictionary of weights and biases
+    L: number of layers
+    keep_prob: probability of keeping a node
+    Returns: cache dictionary with activations and dropout masks
     """
     cache = {}
-    cache["A0"] = X
+    A = X
+    cache["A0"] = np.zeros_like(X)  # A0 should be zeros
+    for l in range(1, L + 1):
+        W = weights['W{}'.format(l)]
+        b = weights['b{}'.format(l)]
+        Z = W @ A + b
 
-    for i in range(1, L + 1):
-        W = weights["W{}".format(i)]
-        b = weights["b{}".format(i)]
-        A_prev = cache["A{}".format(i - 1)]
-
-        Z = np.matmul(W, A_prev) + b
-
-        if i == L:
-            t = np.exp(Z - np.max(Z, axis=0, keepdims=True))
-            cache["A{}".format(i)] = (
-                t / np.sum(t, axis=0, keepdims=True)
-            )
-        else:
+        if l != L:
             A = np.tanh(Z)
+            # Dropout mask
             D = np.random.rand(*A.shape) < keep_prob
-            A = (A * D) / keep_prob
-            cache["A{}".format(i)] = A
-            cache["D{}".format(i)] = D
-
+            A = A * D
+            A = A / keep_prob
+            cache["D{}".format(l)] = D.astype(int)
+        else:
+            # last layer uses softmax
+            expZ = np.exp(Z - np.max(Z, axis=0, keepdims=True))
+            A = expZ / expZ.sum(axis=0, keepdims=True)
+        cache["A{}".format(l)] = A
     return cache
