@@ -5,7 +5,7 @@ Learning](https://upload.wikimedia.org/wikipedia/commons/2/2d/Overfitting.svg)
 
 Imagine you're teaching a child to recognize cats.
 
-You show them 10 pictures.\
+You show them 10 pictures.
 They memorize every single pixel.
 
 Now you show a new cat.
@@ -22,9 +22,9 @@ happening.
 
 ------------------------------------------------------------------------
 
-# 1️⃣ L1 Regularization (Lasso)
+#  L1 Regularization (Lasso)
 
-## 🧠 Six-Year-Old Explanation
+##  Six-Year-Old Explanation
 
 Imagine your backpack is too heavy.\
 You remove the least important toys completely.
@@ -33,25 +33,25 @@ That's L1 regularization.
 
 It forces the model to **throw away useless features**.
 
-## ⚙️ How It Works
+##  How It Works
 
 Loss = OriginalLoss + λ Σ \|w_i\|
 
 Because we penalize the absolute value of weights, many weights shrink
-to zero.\
+to zero.
 The model automatically performs feature selection.
 
 ------------------------------------------------------------------------
 
-# 2️⃣ L2 Regularization (Ridge)
+#  L2 Regularization (Ridge)
 
-## 🧠 Six-Year-Old Explanation
+##  Six-Year-Old Explanation
 
 Instead of throwing toys away, you keep them --- but make them smaller.
 
 That's L2 regularization.
 
-## ⚙️ How It Works
+##  How It Works
 
 Loss = OriginalLoss + λ Σ w_i²
 
@@ -59,15 +59,15 @@ Large weights are punished heavily, preventing extreme values.
 
 ------------------------------------------------------------------------
 
-# 3️⃣ Dropout
+#  Dropout
 
-## 🧠 Six-Year-Old Explanation
+##  Six-Year-Old Explanation
 
 Imagine a classroom where every day some students randomly stay home.
 
 Nobody can rely on just one "smart kid."
 
-## ⚙️ How It Works
+##  How It Works
 
 Random neurons are turned off during training, preventing co-adaptation.
 
@@ -80,33 +80,33 @@ model.add(Dropout(0.5))
 
 ------------------------------------------------------------------------
 
-# 4️⃣ Data Augmentation
+#  Data Augmentation
 
-## 🧠 Six-Year-Old Explanation
+##  Six-Year-Old Explanation
 
 Show a cat upside down, rotated, in different lighting.
 
 The child learns what a cat really is.
 
-## ⚙️ How It Works
+##  How It Works
 
 Artificially transform training data:
 
--   Rotation\
--   Flipping\
--   Zooming\
+-   Rotation
+-   Flipping
+-   Zooming
 -   Noise
 
 ------------------------------------------------------------------------
 
-# 5️⃣ Early Stopping
+# 5️ Early Stopping
 
-## 🧠 Six-Year-Old Explanation
+##  Six-Year-Old Explanation
 
-Study until learning improves.\
+Study until learning improves.
 Stop when memorizing starts.
 
-## ⚙️ How It Works
+##  How It Works
 
 Monitor validation loss and stop when it stops improving.
 
@@ -118,7 +118,7 @@ EarlyStopping(monitor="val_loss", patience=5)
 
 ------------------------------------------------------------------------
 
-# 🧠 The Core Idea
+#  The Core Idea
 
 Regularization prevents memorization and encourages generalization.
 
