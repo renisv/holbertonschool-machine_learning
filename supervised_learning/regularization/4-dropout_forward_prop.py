@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+This module contains the dropout_forward_prop function
+which performs forward propagation in a neural network
+with dropout regularization.
+"""
+
 import numpy as np
 
 
