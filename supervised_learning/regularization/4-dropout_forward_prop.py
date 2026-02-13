@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module that contains the function dropout_forward_prop"""
+"""Module that contains dropout_forward_prop"""
 
 
 import numpy as np
@@ -10,14 +10,13 @@ def dropout_forward_prop(X, weights, L, keep_prob):
     Conducts forward propagation using Dropout
 
     Args:
-        X: input data of shape (nx, m)
+        X: input data (nx, m)
         weights: dictionary of weights and biases
         L: number of layers
         keep_prob: probability of keeping a node
 
     Returns:
-        Dictionary containing outputs of each layer and
-        dropout masks
+        Dictionary of activations and dropout masks
     """
     cache = {}
     cache["A0"] = X
@@ -30,9 +29,9 @@ def dropout_forward_prop(X, weights, L, keep_prob):
         Z = np.matmul(W, A_prev) + b
 
         if i == L:
-            exp_Z = np.exp(Z)
+            t = np.exp(Z - np.max(Z, axis=0, keepdims=True))
             cache["A{}".format(i)] = (
-                exp_Z / np.sum(exp_Z, axis=0, keepdims=True)
+                t / np.sum(t, axis=0, keepdims=True)
             )
         else:
             A = np.tanh(Z)
