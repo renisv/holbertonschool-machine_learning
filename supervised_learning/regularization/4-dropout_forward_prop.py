@@ -5,7 +5,7 @@ import numpy as np
 def dropout_forward_prop(X, weights, L, keep_prob):
     """
     Forward propagation with dropout.
-    
+
     X: input data (nx, m)
     weights: dictionary of weights and biases
     L: number of layers
